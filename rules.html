@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ro" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regulament HellRaiser Cup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /* From Uiverse.io by Nawsome */
+.continue-application {
+  --color: #fff;
+  --background: #404660;
+  --background-hover: #3A4059;
+  --background-left: #2B3044;
+  --folder: #F3E9CB;
+  --folder-inner: #BEB393;
+  --paper: #FFFFFF;
+  --paper-lines: #BBC1E1;
+  --paper-behind: #E1E6F9;
+  --pencil-cap: #fff;
+  --pencil-top: #275EFE;
+  --pencil-middle: #fff;
+  --pencil-bottom: #5C86FF;
+  --shadow: rgba(13, 15, 25, .2);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 17px 29px 17px 69px;
+  transition: background 0.3s;
+  color: var(--color);
+  background: var(--bg, var(--background));
+}
+.continue-application > div {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 53px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 5px 0 0 5px;
+  background: var(--background-left);
+}
+.continue-application > div .folder {
+  width: 23px;
+  height: 27px;
+  position: absolute;
+  left: 15px;
+  top: 13px;
+}
+.continue-application > div .folder .top {
+  left: 0;
+  top: 0;
+  z-index: 2;
+  position: absolute;
+  transform: translateX(var(--fx, 0));
+  transition: transform 0.4s ease var(--fd, 0.3s);
+}
+.continue-application > div .folder .top svg {
+  width: 24px;
+  height: 27px;
+  display: block;
+  fill: var(--folder);
+  transform-origin: 0 50%;
+  transition: transform 0.3s ease var(--fds, 0.45s);
+  transform: perspective(120px) rotateY(var(--fr, 0deg));
+}
+.continue-application > div .folder:before, .continue-application > div .folder:after,
+.continue-application > div .folder .paper {
+  content: "";
+  position: absolute;
+  left: var(--l, 0);
+  top: var(--t, 0);
+  width: var(--w, 100%);
+  height: var(--h, 100%);
+  border-radius: 1px;
+  background: var(--b, var(--folder-inner));
+}
+.continue-application > div .folder:before {
+  box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+  transform: translateX(var(--fx, 0));
+  transition: transform 0.4s ease var(--fd, 0.3s);
+}
+.continue-application > div .folder:after,
+.continue-application > div .folder .paper {
+  --l: 1px;
+  --t: 1px;
+  --w: 21px;
+  --h: 25px;
+  --b: var(--paper-behind);
+}
+.continue-application > div .folder:after {
+  transform: translate(var(--pbx, 0), var(--pby, 0));
+  transition: transform 0.4s ease var(--pbd, 0s);
+}
+.continue-application > div .folder .paper {
+  z-index: 1;
+  --b: var(--paper);
+}
+.continue-application > div .folder .paper:before, .continue-application > div .folder .paper:after {
+  content: "";
+  width: var(--wp, 14px);
+  height: 2px;
+  border-radius: 1px;
+  transform: scaleY(0.5);
+  left: 3px;
+  top: var(--tp, 3px);
+  position: absolute;
+  background: var(--paper-lines);
+  box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+}
+.continue-application > div .folder .paper:after {
+  --tp: 6px;
+  --wp: 10px;
+}
+.continue-application > div .pencil {
+  height: 2px;
+  width: 3px;
+  border-radius: 1px 1px 0 0;
+  top: 8px;
+  left: 105%;
+  position: absolute;
+  z-index: 3;
+  transform-origin: 50% 19px;
+  background: var(--pencil-cap);
+  transform: translateX(var(--pex, 0)) rotate(35deg);
+  transition: transform 0.4s ease var(--pbd, 0s);
+}
+.continue-application > div .pencil:before, .continue-application > div .pencil:after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+  width: var(--w, 5px);
+  height: var(--h, 20px);
+  border-radius: var(--br, 2px 2px 0 0);
+  top: var(--t, 2px);
+  left: var(--l, -1px);
+}
+.continue-application > div .pencil:before {
+  -webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+  clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+}
+.continue-application > div .pencil:after {
+  --b: none;
+  --w: 3px;
+  --h: 6px;
+  --br: 0 2px 1px 0;
+  --t: 3px;
+  --l: 3px;
+  border-top: 1px solid var(--pencil-top);
+  border-right: 1px solid var(--pencil-top);
+}
+.continue-application:before, .continue-application:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color);
+  transform-origin: 9px 1px;
+  transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+  top: 26px;
+  right: 16px;
+  transition: transform 0.3s;
+}
+.continue-application:after {
+  --r: 45deg;
+}
+.continue-application:hover {
+  --cx: 2px;
+  --bg: var(--background-hover);
+  --fx: -40px;
+  --fr: -60deg;
+  --fd: .15s;
+  --fds: 0s;
+  --pbx: 3px;
+  --pby: -3px;
+  --pbd: .15s;
+  --pex: -24px;
+}
+    </style>
+    <style>
+      body { background: #181c21 !important; min-height: 100vh; width: 100vw; margin: 0; position: relative; overflow-x: hidden; }
+      .pattern-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; overflow: hidden; background: repeating-linear-gradient(135deg, #232526 0px, #232526 60px, #23252699 70px, #414345 130px); }
+      .cube-svg { position: absolute; width: 200%; height: 200%; left: -30%; top: -20%; background: transparent; opacity: 0.7; z-index: 1; animation: cubeMove 18s linear infinite alternate; pointer-events: none; }
+      @keyframes cubeMove { from { transform: translateY(0) scale(1); } to { transform: translateY(-20%) scale(1.02) rotate(1deg); } }
+      main, nav, header, section, .container { position: relative; z-index: 2; }
+    </style>
+</head>
+<body>
+  <div class="pattern-bg">
+    <svg preserveAspectRatio="xMidYMid slice" height="100%" width="100%" class="cube-svg" viewBox="0 0 120 104">
+      <defs>
+        <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark"><stop stop-color="#232526" offset="0%"></stop><stop stop-color="#414345" offset="100%"></stop></linearGradient>
+        <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid"><stop stop-color="#4b6cb7" offset="0%"></stop><stop stop-color="#182848" offset="100%"></stop></linearGradient>
+        <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light"><stop stop-color="#a8edea" offset="0%"></stop><stop stop-color="#fed6e3" offset="100%"></stop></linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-transparent py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        <img src="images/1000041770-removebg-preview.png" alt="HellRaiserX logo" height="65">
+      </a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end bg-dark-subtle" tabindex="-1" id="offcanvasNav">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Meniu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Închide"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tournaments">Tournaments</a></li>
+            <li class="nav-item"><a class="nav-link" href="#rankings">Rankings</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hof">Hall of Fame</a></li>
+            <li class="nav-item"><a id="registerBtnTop" class="btn btn-danger fw-bold px-3" href="#register">Translate[En]</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Conținutul paginii de reguli -->
+  <main class="container py-5">
+  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height:60vh;">
+  <div style="height:80px;"></div>
+  <h1 class="text-gold mb-4 text-center">Regulament HellRaiser Cup</h1>
+      <div class="text-center" style="max-width:600px;">
+        <div class="mb-4">
+          <span style="font-size:2rem;">📜</span>
+        </div>
+        <div class="alert alert-warning border-3 border-gold text-dark fw-bold mb-4" style="background:#fffbe6;">
+          <span class="text-gold">⚠️ ATENȚIE:</span> Pentru a putea participa, <u>toți membrii echipei trebuie să urmărească pe TikTok</u> conturile Organizatorului, Special Guest și Comentatorii. <br>
+          <span class="fw-normal">Robotul de verificare va respinge automat echipele care nu respectă această regulă.</span>
+        </div>
+        <ul class="list-unstyled">
+          <li><strong>✅ Toți participanții trebuie să îndeplinească următoarele condiții pentru a se putea înscrie:</strong></li>
+          <li class="mt-2"><span class="text-gold">🖼️ Fiecare echipă trebuie să aibă un logo propriu (imagine distinctivă pentru identificare).</span></li>
+          <li class="mt-3">🎮 Nivel minim al contului: <strong>60</strong>.</li>
+          <li>🎂 Vârsta minimă: <strong>14 ani</strong>.</li>
+          <li>💻 <strong>Maxim 2 jucători care joacă pe PC per echipă.</strong> Nu este permis ca numărul de PC-uri să fie majoritar.</li>
+          <li>🎮 <strong>Excepție la nivel:</strong> Dacă un jucător nu are level 60, dar media echipei este cel puțin 65, echipa va fi acceptată. În caz contrar, statisticile jucătorului vor fi verificate manual și echipa va fi anunțată dacă este acceptată sau nu.</li>
+          <li>🎯 Rată de Headshot minimă: <strong>25%</strong> la oricare dintre următoarele moduri de joc:</li>
+          <li class="ms-3">🕹️ Solo BR Ranked</li>
+          <li class="ms-3">🕹️ Duo BR Ranked</li>
+          <li class="ms-3">🕹️ Squad BR Ranked</li>
+          <li class="ms-3">🕹️ CS Ranked</li>
+          <li>🏅 Cel puțin un sezon atins la rangul <strong>Master</strong>, în oricare dintre moduri, în ultimele 3 luni.</li>
+          <li>⚔️ Raport K/D minim: <strong>2.5</strong> în oricare dintre modurile de joc.</li>
+          <li class="mt-3"><strong>👥 Regula de Guild:</strong></li>
+          <li>🤝 Toți membrii echipei trebuie să facă parte din același guild.Pot exista insa exceptii</li>
+          <li>🔤 Este recomandat ca jucătorii să includă inițiala guildului în nume (nu este obligatoriu).</li>
+          <li>🚫 Jucătorii fără guild nu vor fi acceptați,doar daca sunt extrem de buni.</li>
+          <li class="mt-3"><strong>🔎 Verificare:</strong></li>
+          <li>🛡️ Toate conturile vor fi verificate de către organizatori pentru a proteja turneul împotriva trișării și a asigura corectitudinea competiției.</li>
+        </ul>
+      </div>
+      <hr class="my-5" />
+      <h2 class="text-gold mb-4 text-center">Organizator / Special Guest</h2>
+      <div class="row justify-content-center g-4 mb-4">
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+          <img src="Images/1000041770-removebg-preview.png" alt="HellRaiserX logo" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">HellRaiserX</div>
+          <div class="mt-2">
+            <span class="fw-bold">Follow on</span>
+            <a href="https://www.tiktok.com/@hellraiserx14?lang=ro-RO" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center" style="margin-left:32px;">
+          <img src="Images/872ea96177f964ad140861b8d7edd59c~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Sebastian Badea" class="rounded-circle shadow img-fluid" style="width:160px;max-width:100%;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill w-100 text-center" style="font-size:1.2rem;max-width:320px;margin:0 auto;">Sebastian Badea</div>
+          <div class="mt-2 d-flex flex-wrap justify-content-center gap-2 w-100">
+            <span class="fw-bold">Follow on</span>
+            <a href="https://www.tiktok.com/@specialguest" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-5" />
+      <h2 class="text-gold mb-4 text-center">Formatul Turneului</h2>
+      <div class="text-center" style="max-width:700px;">
+      <hr class="my-5" />
+      <h2 class="text-gold mb-4 text-center">Comentatori & Live-uri</h2>
+      <div class="row justify-content-center g-5 mb-4">
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+          <img src="Images/e0f08af58290aeb111ca11f04f0635e6~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Badea" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">darius_oficialll</div>
+          <div class="mt-2">
+            <span class="fw-bold">Live pe</span>
+            <a href="https://www.tiktok.com/@darius_oficialll?lang=ro-RO" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+          <img src="Images/ff.princi.jpeg" alt="Comentator 2" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">ff.princi</div>
+          <div class="mt-2">
+            <span class="fw-bold">Live pe:</span>
+            <a href="https://www.tiktok.com/@ff.princi?lang=ro-RO" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+          <img src="Images/darwin.jpeg" alt="Comentator 3" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">darwin.ff69</div>
+          <div class="mt-2">
+            <span class="fw-bold">Follow on</span>
+            <a href="https://www.tiktok.com/@darwin.ff69?lang=ro-RO" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+          <img src="Images/terror.jpeg" alt="Comentator 4" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+          <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">terror.official
+</div>
+          <div class="mt-2">
+            <span class="fw-bold">Follow on</span>
+            <a href="https://www.tiktok.com/@terror.official?lang=ro-RO" target="_blank" class="text-gold ms-2">TikTok</a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-5" />
+      <h2 class="text-gold mb-4 text-center">Reguli de bază și comportament</h2>
+      <div class="text-center" style="max-width:600px;">
+        <ul class="list-unstyled">
+          <li><strong>🤝 Respect reciproc:</strong> Toți participanții trebuie să manifeste respect față de ceilalți jucători, organizatori și spectatori.</li>
+          <li><strong>🏅 Comportament sportiv:</strong> Sunt interzise insultele, limbajul vulgar, hărțuirea sau orice formă de discriminare.</li>
+          <li><strong>⚖️ Fair-play:</strong> Orice tentativă de trișare, abuz sau exploatare a bug-urilor va duce la descalificare.</li>
+          <li><strong>📢 Deciziile organizatorilor:</strong> Sunt finale și trebuie respectate de toți participanții.</li>
+          <li><strong>🔒 Protecția datelor:</strong> Informațiile personale vor fi folosite doar pentru organizarea turneului și nu vor fi distribuite terților.</li>
+        </ul>
+      </div>
+      <hr class="my-5" />
+      <h2 class="text-gold mb-4 text-center">Premii</h2>
+      <div class="text-center" style="max-width:600px;">
+        <ul class="list-unstyled">
+          <li><strong>🥇 Locul 1:</strong> 500€ (impartiti egal între jucători) <span class="text-gold"></span></li>
+          <li class="mt-2"><strong>🏆 Locul 1, 2, 3:</strong> primesc automat invitație în finala următorului turneu.</li>
+        </ul>
+      </div>
+        <ul class="list-unstyled">
+          <li><strong>📊 Structură generală:</strong></li>
+          <li>🎮 Modul de joc: <strong>Squad</strong> (4 jucători + 1 rezervă).</li>
+          <li>👥 Număr total echipe participante: <strong>72</strong>.</li>
+          <li>🗂️ Împărțire: <strong>6 grupe</strong> a câte 12 echipe.</li>
+          <li>🏁 Calificare: <strong>primele 2 echipe</strong> din fiecare grupă se califică în Marea Finală.</li>
+        </ul>
+        <ul class="list-unstyled mt-4">
+          <li><strong>🎲 Meciuri:</strong></li>
+          <li>🕹️ Se vor disputa <strong>6 meciuri</strong> în total.</li>
+          <li>🗺️ Fiecare meci se va desfășura pe câte una dintre hărțile disponibile în joc:</li>
+        </ul>
+        <div class="row justify-content-center g-4 mt-3">
+          <div class="col-12">
+            <h4 class="text-gold text-center">Solara</h4>
+            <img src="Images/900px-Map_FF_Solara_allmode.jpg" alt="Solara" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+          <div class="col-12">
+            <h4 class="text-gold text-center">Kalahari</h4>
+            <img src="Images/900px-Map_FF_Kalahari_allmode.jpeg" alt="Kalahari" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+          <div class="col-12">
+            <h4 class="text-gold text-center">Purgatory</h4>
+            <img src="Images/900px-Map_FF_Purgatory_allmode.jpeg" alt="Purgatory" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+          <div class="col-12">
+            <h4 class="text-gold text-center">Alpine</h4>
+            <img src="Images/900px-Map_FF_Alpine_allmode.jpeg" alt="Alpine" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+          <div class="col-12">
+            <h4 class="text-gold text-center">Nexterra</h4>
+            <img src="Images/900px-Map_FF_Nexterra_allmode.jpeg" alt="Nexterra" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+          <div class="col-12">
+            <h4 class="text-gold text-center">Bermuda</h4>
+            <img src="Images/900px-Map_FF_Bermuda_allmode.jpeg" alt="Bermuda" class="img-fluid d-block mx-auto rounded shadow" style="max-width:350px;">
+          </div>
+        </div>
+        <ul class="list-unstyled mt-4">
+          <li><strong>📈 Sistem de punctaj:</strong></li>
+          <li>🔫 1 punct pentru fiecare eliminare (kill).</li>
+          <li class="mb-2">🏅 Punctaj pentru clasament (placement points):</li>
+          <div class="table-responsive mb-4">
+            <table class="table table-dark table-bordered text-center align-middle" style="max-width:400px;margin:0 auto;">
+              <thead>
+                <tr>
+                  <th>Loc</th>
+                  <th>Puncte</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td><strong>20</strong></td></tr>
+                <tr><td>2</td><td><strong>15</strong></td></tr>
+                <tr><td>3</td><td><strong>12</strong></td></tr>
+                <tr><td>4</td><td><strong>10</strong></td></tr>
+                <tr><td>5</td><td><strong>8</strong></td></tr>
+                <tr><td>6–10</td><td><strong>5</strong></td></tr>
+                <tr><td>11–12</td><td><strong>0</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </ul>
+        <ul class="list-unstyled mt-4">
+          <li><strong>⏰ Check-in și absențe:</strong></li>
+          <li>🕒 Echipele trebuie să fie prezente cu cel puțin <strong>15 minute</strong> înainte de start.</li>
+          <li>🚫 Echipele care nu se prezintă la timp pierd meciul prin forfait.</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <!-- Poți adăuga aici conținutul specific regulilor -->
+    <div class="text-center mt-5 mb-3">
+      <div class="bg-gold text-dark fw-bold rounded-pill px-4 py-3 d-inline-block shadow" style="font-size:1.25rem;max-width:600px;">
+  <span style="font-size:1.5em;">🔥</span> Mult succes tuturor echipele! Jucați cu pasiune, respect și fair-play. HellRaiser Cup vă susține și vă urează să aveți parte de o experiență memorabilă! <span style="font-size:1.5em;">🏆</span>
+      </div>
+    </div>
+    <div class="text-center mb-5">
+      <form id="regulamentForm" style="max-width:600px;margin:0 auto;">
+        <div class="form-check d-flex justify-content-center mb-3">
+          <input class="form-check-input" type="checkbox" value="accept" id="acceptRegulament" required>
+          <label class="form-check-label ms-2" for="acceptRegulament">
+            Confirm că am citit și accept toate regulile și condițiile prezentate mai sus.
+          </label>
+        </div>
+<button class="continue-application" type="submit" id="registerBtnRules">
+
+  <div>
+    <div class="pencil"></div>
+    <div class="folder">
+      <div class="top">
+        <svg viewBox="0 0 24 27">
+          <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+        </svg>
+      </div>
+      <div class="paper"></div>
+    </div>
+  </div>
+  Continue Application
+</button>
+      </form>
+      <script>
+        const acceptRegulament = document.getElementById('acceptRegulament');
+        const registerBtnRules = document.getElementById('registerBtnRules');
+        // Sincronizează starea butonului cu cronometru și reguli din index.js
+        function setRegisterBtnRulesState(state) {
+          let colorClass = "btn btn-lg px-4 styled-button";
+          let bg = "";
+          let pointer = "none";
+          let opacity = "0.7";
+          let cursor = "not-allowed";
+          let text = "Register Soon";
+          if(state === "open") {
+            colorClass = "btn btn-success btn-lg px-4 styled-button";
+            bg = "linear-gradient(90deg, #28a745 0%, #218838 100%)";
+            pointer = "auto";
+            opacity = "1";
+            cursor = "pointer";
+            text = "Register Now";
+          } else if(state === "closeSoon") {
+            colorClass = "btn btn-warning btn-lg px-4 styled-button";
+            bg = "linear-gradient(90deg, #ff9800 0%, #d4af37 100%)";
+            pointer = "auto";
+            opacity = "1";
+            cursor = "pointer";
+            text = "Registration Close Soon";
+          } else if(state === "closed") {
+            colorClass = "btn btn-danger btn-lg px-4 styled-button";
+            bg = "linear-gradient(90deg, #ff0000 0%, #b30000 100%)";
+            pointer = "none";
+            opacity = "0.7";
+            cursor = "not-allowed";
+            text = "Registration Closed";
+          }
+          registerBtnRules.className = colorClass + " continue-application";
+          registerBtnRules.style.background = bg;
+          registerBtnRules.style.pointerEvents = pointer;
+          registerBtnRules.style.opacity = opacity;
+          registerBtnRules.style.cursor = cursor;
+          registerBtnRules.textContent = text;
+        }
+        // Preia starea din index.js
+        function syncStateFromIndex() {
+          let state = window.state || "soon";
+          setRegisterBtnRulesState(state);
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+          syncStateFromIndex();
+          setInterval(syncStateFromIndex, 1000);
+        });
+        registerBtnRules.addEventListener('click', function(e) {
+          let state = window.state || "soon";
+          if(state !== "open" && state !== "closeSoon") {
+            e.preventDefault();
+            return;
+          }
+          if (!acceptRegulament.checked) {
+            e.preventDefault();
+            alert('Trebuie să accepți regulamentul pentru a te putea înregistra!');
+            return;
+          }
+          window.open("https://docs.google.com/forms/d/e/1FAIpQLSfxbaFDqOkAK2JV_lEVCma7PEBwEwfi0WtzMpnCIS78op6iMw/viewform?usp=header", '_blank');
+        });
+      </script>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+<script>
+// Ascunde/afișează special guest în funcție de data
+const REG_OPEN_AT = "2025-09-11T00:00:00"; // sincronizat cu index.js
+const revealDays = 5;
+const now = new Date();
+const regOpen = new Date(REG_OPEN_AT);
+const revealDate = new Date(regOpen.getTime() + revealDays*24*60*60*1000);
+const specialGuestSection = document.getElementById('specialGuestSection');
+if (now < revealDate) {
+  specialGuestSection.innerHTML = `<div class='col-12 text-center py-4'><span class='fw-bold text-gold' style='font-size:1.3em;'>🔒 Special Guest va fi dezvăluit în curând!</span><br><span class='text-muted'>Revino după ${revealDays} zile de la deschiderea înregistrărilor pentru a afla cine este invitatul special.</span></div>`;
+} else {
+  specialGuestSection.innerHTML = `<div class="col-12 col-md-5 d-flex flex-column align-items-center">
+    <img src="Images/872ea96177f964ad140861b8d7edd59c~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Special Guest" class="rounded-circle shadow" style="width:160px;height:160px;object-fit:cover;border:6px solid #ffd700;">
+    <div class="bg-gold text-dark fw-bold px-4 py-2 mt-3 rounded-pill" style="font-size:1.2rem;">Sebastian Badea</div>
+    <div class="mt-2">
+      <span class="fw-bold">Follow on</span>
+      <a href="https://www.tiktok.com/@specialguest" target="_blank" class="text-gold ms-2">TikTok</a>
+    </div>
+  </div>`;
+}
+</script>
+<script>
+
+let isEnglish = false;
+const translateBtn = document.getElementById('registerBtnTop');
+translateBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  if (!isEnglish) {
+    // Traducere în engleză
+    document.querySelector('h1').textContent = 'HellRaiser Cup Rules';
+    document.querySelector('.alert-warning').innerHTML = '<span class="text-gold">ATTENTION:</span> To participate, <u>all team members must follow on TikTok</u> the accounts of the Organizer, Special Guest, and both Commentators.<br><span class="fw-normal">The verification bot will automatically reject teams that do not follow this rule.</span>';
+    const mainList = document.querySelector('.text-center ul.list-unstyled');
+    if(mainList) mainList.innerHTML = `
+      <li><strong>All participants must meet the following requirements to register:</strong></li>
+      <li class="mt-2"><span class="text-gold">Each team must have its own logo (distinctive image for identification).</span></li>
+      <li class="mt-3">Minimum account level: <strong>60</strong>.</li>
+      <li>Minimum age: <strong>14 years</strong>.</li>
+      <li>💻 <strong>Maximum 2 players using PC per team.</strong> The number of PC players cannot be the majority.</li>
+      <li>🎮 <strong>Level exception:</strong> If a player does not have level 60, but the team average is at least 65, the team will be accepted. Otherwise, the player's stats will be checked manually and the team will be notified if accepted or not.</li>
+      <li>Minimum Headshot rate: <strong>25%</strong> in any of the following game modes:</li>
+      <li class="ms-3">Solo BR Ranked</li>
+      <li class="ms-3">Duo BR Ranked</li>
+      <li class="ms-3">Squad BR Ranked</li>
+      <li class="ms-3">CS Ranked</li>
+      <li>At least one season reached <strong>Master</strong> rank in any mode in the last 3 months.</li>
+      <li>Minimum K/D ratio: <strong>2.5</strong> in any game mode.</li>
+      <li class="mt-3"><strong>Guild Rule:</strong></li>
+      <li>All team members must be in the same guild.</li>
+      <li>It is recommended for players to include the guild initial in their name (not mandatory).</li>
+      <li>Players without a guild will not be accepted.</li>
+      <li class="mt-3"><strong>Verification:</strong></li>
+      <li>All accounts will be checked by organizers to protect the tournament against cheating and ensure fair competition.</li>
+    `;
+    document.querySelectorAll('h2').forEach(function(h2){
+      if(h2.textContent.includes('Organizator')) h2.textContent = 'Organizer';
+      if(h2.textContent.includes('Special Guest')) h2.textContent = 'Special Guest';
+      if(h2.textContent.includes('Formatul Turneului')) h2.textContent = 'Tournament Format';
+      if(h2.textContent.includes('Comentatori')) h2.textContent = 'Commentators & Live';
+      if(h2.textContent.includes('Reguli de bază')) h2.textContent = 'Basic Rules & Behavior';
+      if(h2.textContent.includes('Premii')) h2.textContent = 'Prizes';
+    });
+    const basicRules = document.querySelectorAll('h2');
+    basicRules.forEach(function(h2){
+      if(h2.textContent === 'Basic Rules & Behavior') {
+        const ul = h2.nextElementSibling.querySelector('ul');
+        if(ul) ul.innerHTML = `
+          <li><strong>Mutual respect:</strong> All participants must show respect to other players, organizers, and spectators.</li>
+          <li><strong>Sportsmanship:</strong> Insults, vulgar language, harassment, or any form of discrimination are prohibited.</li>
+          <li><strong>Fair-play:</strong> Any attempt to cheat, abuse, or exploit bugs will result in disqualification.</li>
+          <li><strong>Organizers' decisions:</strong> Are final and must be respected by all participants.</li>
+          <li><strong>Data protection:</strong> Personal information will be used only for tournament organization and will not be shared with third parties.</li>
+        `;
+      }
+    });
+    document.querySelectorAll('h2').forEach(function(h2){
+      if(h2.textContent === 'Prizes') {
+        const ul = h2.nextElementSibling.querySelector('ul');
+        if(ul) ul.innerHTML = `
+          <li><strong>1st place:</strong> 500€ <span class="text-gold">or cash</span></li>
+          <li class="mt-2"><strong>1st, 2nd, 3rd place:</strong> automatically receive an invitation to the next tournament final.</li>
+        `;
+      }
+    });
+    // Traducere tabel punctaj
+    const scoreTable = document.querySelector('.table-dark.table-bordered');
+    if(scoreTable) {
+      // Titlu tabel
+      const tableTitle = scoreTable.previousElementSibling;
+      if(tableTitle && tableTitle.tagName === 'H4') tableTitle.textContent = 'General Scoring System';
+      // Capete tabel
+      const ths = scoreTable.querySelectorAll('thead th');
+      if(ths.length >= 2) {
+        ths[0].textContent = 'Place';
+        ths[1].textContent = 'Points';
+      }
+      // Valori tabel
+      const tds = scoreTable.querySelectorAll('tbody tr td');
+      if(tds.length >= 14) {
+        tds[0].textContent = '1'; tds[1].textContent = '20';
+        tds[2].textContent = '2'; tds[3].textContent = '15';
+        tds[4].textContent = '3'; tds[5].textContent = '12';
+        tds[6].textContent = '4'; tds[7].textContent = '10';
+        tds[8].textContent = '5'; tds[9].textContent = '8';
+        tds[10].textContent = '6–10'; tds[11].textContent = '5';
+        tds[12].textContent = '11–12'; tds[13].textContent = '0';
+      }
+    }
+    const supportMsg = document.querySelector('.bg-gold.text-dark.fw-bold.rounded-pill');
+    if(supportMsg) supportMsg.textContent = 'Good luck to all teams! Play with passion, respect, and fair-play. HellRaiser Cup supports you and wishes you a memorable experience!';
+    const label = document.querySelector('label[for="acceptRegulament"]');
+    if(label) label.textContent = 'I confirm that I have read and accept all the rules and conditions above.';
+    const btn = document.getElementById('registerBtnRules');
+    if(btn) btn.textContent = 'Register';
+    // Nume HellRaiserX static
+    const orgName = document.querySelectorAll('.bg-gold.text-dark.fw-bold.px-4.py-2.mt-3.rounded-pill')[0];
+    if(orgName) orgName.textContent = 'HellRaiserX';
+    translateBtn.textContent = 'Translate[Ro]';
+    isEnglish = true;
+  } else {
+    // Revine la română
+    document.querySelector('h1').textContent = 'Regulament HellRaiser Cup';
+    document.querySelector('.alert-warning').innerHTML = '<span class="text-gold">ATENȚIE:</span> Pentru a putea participa, <u>toți membrii echipei trebuie să urmărească pe TikTok</u> conturile Organizatorului, Special Guest și ambii Comentatori.<br><span class="fw-normal">Robotul de verificare va respinge automat echipele care nu respectă această regulă.</span>';
+    const mainList = document.querySelector('.text-center ul.list-unstyled');
+    if(mainList) mainList.innerHTML = `
+      <li><strong>Toți participanții trebuie să îndeplinească următoarele condiții pentru a se putea înscrie:</strong></li>
+      <li class="mt-2"><span class="text-gold">Fiecare echipă trebuie să aibă un logo propriu (imagine distinctivă pentru identificare).</span></li>
+      <li class="mt-3">Nivel minim al contului: <strong>60</strong>.</li>
+      <li>Vârsta minimă: <strong>14 ani</strong>.</li>
+      <li>💻 <strong>Maxim 2 jucători care joacă pe PC per echipă.</strong> Nu este permis ca numărul de PC-uri să fie majoritar.</li>
+      <li>🎮 <strong>Excepție la nivel:</strong> Dacă un jucător nu are level 60, dar media echipei este cel puțin 65, echipa va fi acceptată. În caz contrar, statisticile jucătorului vor fi verificate manual și echipa va fi anunțată dacă este acceptată sau nu.</li>
+      <li>Rată de Headshot minimă: <strong>25%</strong> la oricare dintre următoarele moduri de joc:</li>
+      <li class="ms-3">Solo BR Ranked</li>
+      <li class="ms-3">Duo BR Ranked</li>
+      <li class="ms-3">Squad BR Ranked</li>
+      <li class="ms-3">CS Ranked</li>
+      <li>Cel puțin un sezon atins la rangul <strong>Master</strong>, în oricare dintre moduri, în ultimele 3 luni.</li>
+      <li>Raport K/D minim: <strong>2.5</strong> în oricare dintre modurile de joc.</li>
+      <li class="mt-3"><strong>Regula de Guild:</strong></li>
+      <li>Toți membrii echipei trebuie să facă parte din același guild.</li>
+      <li>Este recomandat ca jucătorii să includă inițiala guildului în nume (nu este obligatoriu).</li>
+      <li>Jucătorii fără guild nu vor fi acceptați.</li>
+      <li class="mt-3"><strong>Verificare:</strong></li>
+      <li>Toate conturile vor fi verificate de către organizatori pentru a proteja turneul împotriva trișării și a asigura corectitudinea competiției.</li>
+    `;
+    document.querySelectorAll('h2').forEach(function(h2){
+      if(h2.textContent === 'Organizer') h2.textContent = 'Organizator';
+      if(h2.textContent === 'Special Guest') h2.textContent = 'Special Guest';
+      if(h2.textContent === 'Tournament Format') h2.textContent = 'Formatul Turneului';
+      if(h2.textContent === 'Commentators & Live') h2.textContent = 'Comentatori & Live-uri';
+      if(h2.textContent === 'Basic Rules & Behavior') h2.textContent = 'Reguli de bază și comportament';
+      if(h2.textContent === 'Prizes') h2.textContent = 'Premii';
+    });
+    const basicRules = document.querySelectorAll('h2');
+    basicRules.forEach(function(h2){
+      if(h2.textContent === 'Reguli de bază și comportament') {
+        const ul = h2.nextElementSibling.querySelector('ul');
+        if(ul) ul.innerHTML = `
+          <li><strong>Respect reciproc:</strong> Toți participanții trebuie să manifeste respect față de ceilalți jucători, organizatori și spectatori.</li>
+          <li><strong>Comportament sportiv:</strong> Sunt interzise insultele, limbajul vulgar, hărțuirea sau orice formă de discriminare.</li>
+          <li><strong>Fair-play:</strong> Orice tentativă de trișare, abuz sau exploatare a bug-urilor va duce la descalificare.</li>
+          <li><strong>Deciziile organizatorilor:</strong> Sunt finale și trebuie respectate de toți participanții.</li>
+          <li><strong>Protecția datelor:</strong> Informațiile personale vor fi folosite doar pentru organizarea turneului și nu vor fi distribuite terților.</li>
+        `;
+      }
+    });
+    document.querySelectorAll('h2').forEach(function(h2){
+      if(h2.textContent === 'Premii') {
+        const ul = h2.nextElementSibling.querySelector('ul');
+        if(ul) ul.innerHTML = `
+          <li><strong>Locul 1:</strong> 500€ <span class="text-gold">sau cash</span></li>
+          <li class="mt-2"><strong>Locul 1, 2, 3:</strong> primesc automat invitație în finala următorului turneu.</li>
+        `;
+      }
+    });
+    // Revine la română tabel punctaj
+    const scoreTable = document.querySelector('.table-dark.table-bordered');
+    if(scoreTable) {
+      const tableTitle = scoreTable.previousElementSibling;
+      if(tableTitle && tableTitle.tagName === 'H4') tableTitle.textContent = 'Structură generală de punctaj';
+      const ths = scoreTable.querySelectorAll('thead th');
+      if(ths.length >= 2) {
+        ths[0].textContent = 'Loc';
+        ths[1].textContent = 'Puncte';
+      }
+      const tds = scoreTable.querySelectorAll('tbody tr td');
+      if(tds.length >= 14) {
+        tds[0].textContent = '1'; tds[1].textContent = '20';
+        tds[2].textContent = '2'; tds[3].textContent = '15';
+        tds[4].textContent = '3'; tds[5].textContent = '12';
+        tds[6].textContent = '4'; tds[7].textContent = '10';
+        tds[8].textContent = '5'; tds[9].textContent = '8';
+        tds[10].textContent = '6–10'; tds[11].textContent = '5';
+        tds[12].textContent = '11–12'; tds[13].textContent = '0';
+      }
+    }
+    const supportMsg = document.querySelector('.bg-gold.text-dark.fw-bold.rounded-pill');
+    if(supportMsg) supportMsg.textContent = 'Mult succes tuturor echipelor! Jucați cu pasiune, respect și fair-play. HellRaiser Cup vă susține și vă urează să aveți parte de o experiență memorabilă!';
+    const label = document.querySelector('label[for="acceptRegulament"]');
+    if(label) label.textContent = 'Confirm că am citit și accept toate regulile și condițiile prezentate mai sus.';
+    const btn = document.getElementById('registerBtnRules');
+    if(btn) btn.textContent = 'Register';
+    // Nume HellRaiserX static
+    const orgName = document.querySelectorAll('.bg-gold.text-dark.fw-bold.px-4.py-2.mt-3.rounded-pill')[0];
+    if(orgName) orgName.textContent = 'HellRaiserX';
+    translateBtn.textContent = 'Translate[En]';
+    isEnglish = false;
+  }
+});
+</script>
+</body>
+</html>
