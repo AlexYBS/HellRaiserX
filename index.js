@@ -1,5 +1,5 @@
 // === Setează data de deschidere a înregistrărilor (YYYY-MM-DDTHH:MM:SS) ===
-const REG_OPEN_AT = "2025-09-12T20:00:00"; // ← SCHIMBĂ după nevoie
+const REG_OPEN_AT = "2025-09-14T23:59:59"; // ← SCHIMBĂ după nevoie
 const REG_REGISTRATION_DAYS = 10; // număr zile pentru perioada de înregistrare
 const regUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfxbaFDqOkAK2JV_lEVCma7PEBwEwfi0WtzMpnCIS78op6iMw/viewform?usp=header"; // ← link Google Forms
 
