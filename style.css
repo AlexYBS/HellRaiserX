@@ -389,3 +389,16 @@ main, nav, header, section, .special-guest-section, .row, .cd {
 /* Leaderboard collapse Bootstrap: doar rândul selectat se afișează sub echipă */
 .collapse { display: none; }
 .collapse.show { display: table-row; }
+
+/* Fix pentru spațierea de jos la grupele de echipe */
+.card-body .table tbody tr:last-child td {
+  padding-bottom: 0 !important;
+}
+
+.card-body .table tbody tr:last-child .mb-2 {
+  margin-bottom: 0 !important;
+}
+
+.card-body .table {
+  margin-bottom: 0 !important;
+}
