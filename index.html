@@ -154,6 +154,39 @@ main, nav, header, section, .container, .special-guest-section {
 .card .table:last-child {
   margin-bottom: 0 !important;
 }
+
+/* Fix specific pentru grupele A, B și F care au probleme cu spațierea */
+.group-table-A tbody,
+.group-table-B tbody,
+.group-table-F tbody {
+  border-bottom: none !important;
+}
+
+.group-table-A tbody tr:last-child,
+.group-table-B tbody tr:last-child,
+.group-table-F tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+.group-table-A tbody tr:last-child td,
+.group-table-B tbody tr:last-child td,
+.group-table-F tbody tr:last-child td {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+/* Eliminare completă padding de jos pentru collapse-urile problematice */
+#groupAteam12 td,
+#groupBteam12 td,
+#groupFteam12 td {
+  padding-bottom: 0 !important;
+}
+
+#groupAteam12 .row,
+#groupBteam12 .row,
+#groupFteam12 .row {
+  margin-bottom: 0 !important;
+}
 .card .table .collapse .row .col-12:last-child .mb-2 {
   margin-bottom: 0 !important;
 }
