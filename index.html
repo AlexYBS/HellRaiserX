@@ -194,8 +194,8 @@ main, nav, header, section, .container, .special-guest-section {
 </head>
 
 <body>
-  <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;overflow:hidden;">
-    <video src="Images/HellRaiser%20_%20Overkill%20Esports.mp4" autoplay loop muted playsinline style="object-fit:cover;width:100vw;height:100vh;min-height:100vh;min-width:100vw;z-index:0;"></video>
+  <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;overflow:hidden;background:linear-gradient(135deg, rgba(226,25,51,0.8), rgba(0,0,0,0.5)), url('Images/1000041770.png') center/cover;">
+    <video src="Images/HellRaiser%20_%20Overkill%20Esports.mp4" autoplay loop muted playsinline preload="metadata" style="object-fit:cover;width:100vw;height:100vh;min-height:100vh;min-width:100vw;z-index:0;opacity:0;transition:opacity 2s;" onloadeddata="this.style.opacity=1;"></video>
   </div>
 
     <!-- NAVBAR -->
