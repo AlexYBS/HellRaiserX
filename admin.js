@@ -269,41 +269,126 @@ function updateLeaderboard(group) {
     });
     
     // Reordonează echipele în funcție de puncte
+    console.log('🔄 Sortez echipele după puncte...');
     const tbody = groupTable.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr:not(.collapse)'));
+    if (!tbody) {
+      console.error('❌ Nu găsesc tbody pentru grupa', group);
+      return;
+    }
     
-    rows.sort((a, b) => {
-      const pointsCellA = a.querySelector('td:nth-child(3)');
-      const pointsCellB = b.querySelector('td:nth-child(3)');
-      
-      const pointsA = pointsCellA.querySelector('input') ? 
-        parseInt(pointsCellA.querySelector('input').value) || 0 : 
-        parseInt(pointsCellA.textContent) || 0;
-      
-      const pointsB = pointsCellB.querySelector('input') ? 
-        parseInt(pointsCellB.querySelector('input').value) || 0 : 
-        parseInt(pointsCellB.textContent) || 0;
-      
-      return pointsB - pointsA; // Sortare descrescătoare
+    const rows = Array.from(tbody.querySelectorAll('tr:not(.collapse)'));
+    console.log(`📊 Găsite ${rows.length} echipe pentru sortare`);
+    
+    // Creează o listă cu echipe și puncte pentru debug
+    const teamsForSort = rows.map(row => {
+      const nameCell = row.querySelector('td:nth-child(2)');
+      const pointsCell = row.querySelector('td:nth-child(3)');
+      const name = nameCell ? nameCell.textContent.trim() : 'Unknown';
+      const points = pointsCell && pointsCell.querySelector('input') ? 
+        parseInt(pointsCell.querySelector('input').value) || 0 : 0;
+      return { name, points, row };
     });
     
+    console.log('📋 Echipe înainte de sortare:', teamsForSort.map(t => `${t.name}: ${t.points}pts`));
+    
+    // Calculează statistici suplimentare pentru fiecare echipă
+    const enhancedTeams = rows.map(row => {
+      const nameCell = row.querySelector('td:nth-child(2)');
+      const teamName = nameCell ? nameCell.textContent.trim() : 'Unknown';
+      
+      // Obține statisticile din teamStats
+      const stats = teamStats[teamName] || { totalPoints: 0, totalKills: 0, wins: 0 };
+      
+      // Calculează top3 finishes (poziții 1, 2, 3)
+      let top3Count = 0;
+      const teams = groupTeams[group];
+      const teamIndex = teams.findIndex(t => t.name === teamName);
+      
+      if (teamIndex !== -1) {
+        maps.forEach((map, mapIndex) => {
+          const posSelect = document.getElementById(`pos_${group}_${mapIndex}_${teamIndex}`);
+          if (posSelect && posSelect.value) {
+            const position = parseInt(posSelect.value);
+            if (position >= 1 && position <= 3) {
+              top3Count++;
+            }
+          }
+        });
+      }
+      
+      return {
+        row,
+        teamName,
+        points: stats.totalPoints,
+        kills: stats.totalKills,
+        wins: stats.wins,
+        top3: top3Count
+      };
+    });
+    
+    console.log('🏆 Statistici pentru sortare:', enhancedTeams.map(t => 
+      `${t.teamName}: ${t.points}pts, ${t.kills}kills, ${t.wins}wins, ${t.top3}top3`
+    ));
+    
+    // Sortare cu criterii multiple
+    enhancedTeams.sort((a, b) => {
+      // 1. Criterii principal: Puncte (descrescător)
+      if (a.points !== b.points) {
+        return b.points - a.points;
+      }
+      
+      // 2. La egalitate de puncte: Kills (descrescător)  
+      if (a.kills !== b.kills) {
+        return b.kills - a.kills;
+      }
+      
+      // 3. La egalitate de kills: Wins (descrescător)
+      if (a.wins !== b.wins) {
+        return b.wins - a.wins;
+      }
+      
+      // 4. La egalitate de wins: Top 3 finishes (descrescător)
+      if (a.top3 !== b.top3) {
+        return b.top3 - a.top3;
+      }
+      
+      // 5. La egalitate completă: păstrează ordinea alfabetică
+      return a.teamName.localeCompare(b.teamName);
+    });
+    
+    // Extrage rândurile sortate
+    const sortedRows = enhancedTeams.map(team => team.row);
+    
+    console.log('📊 Ordinea finală:', enhancedTeams.map((t, i) => 
+      `${i+1}. ${t.teamName} (${t.points}pts, ${t.kills}k, ${t.wins}w, ${t.top3}t3)`
+    ));
+    
+    // Curăță tabelul și re-adaugă rândurile în ordinea corectă
+    const allRows = Array.from(tbody.children);
+    allRows.forEach(row => tbody.removeChild(row));
+    
     // Reface ordinea în tabel și actualizează pozițiile
-    rows.forEach((row, index) => {
+    sortedRows.forEach((row, index) => {
       const positionCell = row.querySelector('th');
       if (positionCell) {
         positionCell.textContent = index + 1;
       }
       
-      // Găsește rândul collapse asociat
-      const targetId = row.getAttribute('data-bs-target');
-      const collapseRow = tbody.querySelector(`tr.collapse${targetId.replace('#', '[id="') + '"]'}`);
-      
-      // Re-adaugă rândurile în ordinea corectă
+      // Adaugă rândul principal
       tbody.appendChild(row);
-      if (collapseRow) {
-        tbody.appendChild(collapseRow);
+      
+      // Găsește și adaugă rândul collapse asociat
+      const targetId = row.getAttribute('data-bs-target');
+      if (targetId) {
+        const collapseId = targetId.replace('#', '');
+        const collapseRow = allRows.find(r => r.id === collapseId);
+        if (collapseRow) {
+          tbody.appendChild(collapseRow);
+        }
       }
     });
+    
+    console.log('✅ Sortarea completă pentru grupa', group);
   }
   
   // Salvează rezultatele în localStorage după actualizare
@@ -558,6 +643,10 @@ async function commitToGitHub(data, token) {
     
     if (commitResponse.ok) {
       console.log('✅ Commit realizat cu succes pe GitHub!');
+      
+      // Sortează toate grupele după salvare
+      sortAllGroups();
+      
       return true;
     } else {
       const error = await commitResponse.json();
@@ -569,6 +658,15 @@ async function commitToGitHub(data, token) {
     console.error('❌ Eroare GitHub API:', error);
     return false;
   }
+}
+
+// Sortează toate grupele după puncte
+function sortAllGroups() {
+  console.log('🔄 Sortez toate grupele după puncte...');
+  Object.keys(groupTeams).forEach(group => {
+    updateLeaderboard(group);
+  });
+  console.log('✅ Toate grupele au fost sortate!');
 }
 
 // Obține datele curente pentru salvare
@@ -788,7 +886,17 @@ document.addEventListener('DOMContentLoaded', function() {
   saveBtn.addEventListener('click', function() {
     const selectedGroup = groupSelector.value;
     updateLeaderboard(selectedGroup);
-    alert(`✅ Clasamentul pentru Grupa ${selectedGroup} a fost actualizat!`);
+    
+    // Sortează și celelalte grupe vizibile
+    setTimeout(() => {
+      Object.keys(groupTeams).forEach(group => {
+        if (group !== selectedGroup) {
+          updateLeaderboard(group);
+        }
+      });
+    }, 500);
+    
+    alert(`✅ Clasamentul pentru Grupa ${selectedGroup} a fost actualizat și toate grupele au fost sortate!`);
   });
   
   // Generează interfața inițială
