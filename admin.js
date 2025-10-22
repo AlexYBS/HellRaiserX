@@ -458,17 +458,10 @@ function saveLeaderboardToStorage() {
   console.log(JSON.stringify(leaderboardData, null, 2));
   console.log('========================================');
   
-  // Sau downloadează automat fișierul
-  downloadJSON(leaderboardData, 'tournament_data.json');
-  
   // Afișează instrucțiuni pentru actualizare
-  alert(`🎯 PAȘI PENTRU ACTUALIZARE GLOBALĂ:
+  alert(`✅ Rezultatele au fost salvate pentru această sesiune!
   
-1. Un fișier s-a descărcat în Downloads
-2. Înlocuiește conținutul din tournament_data.json cu cel din consolă
-3. Salvează fișierul (Ctrl+S)
-4. Fă git commit + push
-5. Rezultatele vor fi globale pentru toți!`);
+📊 Clasamentele sunt actualizate și sortate corect!`);
 }
 
 // Funcție pentru download automat JSON
