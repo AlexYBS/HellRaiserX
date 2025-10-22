@@ -626,26 +626,31 @@ async function autoCommitToGitHub() {
       console.log('🎉 COMMIT AUTOMAT REUȘIT!');
       alert('🎉 SUCCES! Rezultatele au fost actualizate automat pe GitHub!\n\n✅ Toți vizitatorii vor vedea noile rezultate!');
     } else {
-      console.log('❌ COMMIT AUTOMAT EȘUAT - cad pe metoda manuală');
-      alert('❌ Nu s-a putut face commit automat.\n\nVa trebui să faci manual - vezi consola pentru JSON.');
-      showJSONInstructions();
+      console.log('❌ COMMIT AUTOMAT EȘUAT - OPRESC LOOP-UL');
+      alert('❌ Commit automat eșuat. Verifică token-ul GitHub sau încearcă din nou mai târziu.');
+      // NU mai chem showJSONInstructions() ca să nu se blocheze în loop
     }
   } catch (error) {
     console.error('💥 EROARE în autoCommitToGitHub:', error);
-    alert('❌ Eroare la commit automat. Folosește metoda manuală.');
-    showJSONInstructions();
+    alert('❌ Eroare la commit automat: ' + error.message);
+    // NU mai chem showJSONInstructions() ca să nu se blocheze în loop
   }
 }
 
 // Comite fișierul pe GitHub prin API
 async function commitToGitHub(data, token) {
+  console.log('🔑 Încep commitToGitHub cu token lung de', token.length, 'caractere');
+  
   const owner = 'AlexYBS';  // Username-ul tău GitHub
   const repo = 'HellRaiserX';  // Numele repo-ului
   const path = 'tournament_data.json';
   const branch = 'master';
   
+  console.log(`📁 Target: ${owner}/${repo}/${path} pe branch ${branch}`);
+  
   try {
     // 1. Obține SHA-ul fișierului curent
+    console.log('1️⃣ Obțin SHA-ul fișierului curent...');
     const fileResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`, {
       headers: {
         'Authorization': `token ${token}`,
@@ -653,10 +658,15 @@ async function commitToGitHub(data, token) {
       }
     });
     
+    console.log('📡 Răspuns API pentru SHA:', fileResponse.status, fileResponse.statusText);
+    
     let sha = null;
     if (fileResponse.ok) {
       const fileData = await fileResponse.json();
       sha = fileData.sha;
+      console.log('✅ SHA obținut:', sha);
+    } else {
+      console.log('⚠️ Nu am putut obține SHA, probabil fișier nou');
     }
     
     // 2. Creează commit-ul
