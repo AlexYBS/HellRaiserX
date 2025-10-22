@@ -1,0 +1,332 @@
+{
+  "lastUpdate": "2025-10-22T17:27:04.561Z",
+  "groups": {
+    "A": {
+      "groupAteam1": {
+        "points": "17",
+        "wins": "0",
+        "kills": "5"
+      },
+      "groupAteam2": {
+        "points": "5",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupAteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupAteam4": {
+        "points": "6",
+        "wins": "0",
+        "kills": "1"
+      },
+      "groupAteam5": {
+        "points": "41",
+        "wins": "1",
+        "kills": "21"
+      },
+      "groupAteam6": {
+        "points": "12",
+        "wins": "0",
+        "kills": "4"
+      },
+      "groupAteam7": {
+        "points": "5",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupAteam8": {
+        "points": "8",
+        "wins": "0",
+        "kills": "3"
+      },
+      "groupAteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupAteam10": {
+        "points": "17",
+        "wins": "0",
+        "kills": "7"
+      },
+      "groupAteam11": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupAteam12": {
+        "points": "21",
+        "wins": "0",
+        "kills": "6"
+      }
+    },
+    "B": {
+      "groupBteam1": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam2": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam4": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam5": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam6": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam7": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam8": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam10": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam11": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupBteam12": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      }
+    },
+    "C": {
+      "groupCteam1": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam2": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam4": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam5": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam6": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam7": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam8": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam10": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam11": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupCteam12": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      }
+    },
+    "D": {
+      "groupDteam1": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam2": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam4": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam5": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam6": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam7": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam8": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupDteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      }
+    },
+    "E": {
+      "groupEteam1": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam2": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam4": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam5": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam6": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam7": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam8": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupEteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      }
+    },
+    "F": {
+      "groupFteam1": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam2": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam3": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam4": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam5": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam6": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam7": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam8": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      },
+      "groupFteam9": {
+        "points": "0",
+        "wins": "0",
+        "kills": "0"
+      }
+    }
+  }
+}
