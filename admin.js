@@ -145,15 +145,6 @@ function generateGroupInterface(group) {
         <button onclick="updateLeaderboard('${group}')" style="padding: 8px 16px; background: #00ff88; color: #000; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">
           🔄 Actualizează Clasament
         </button>
-        <button onclick="autoCommitToGitHub()" style="padding: 8px 16px; background: #ffd700; color: #000; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">
-          � Salvează AUTOMAT pe GitHub
-        </button>
-        <button onclick="showJSONInstructions()" style="padding: 8px 16px; background: #9966cc; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">
-          📋 Salvare Manuală
-        </button>
-        <button onclick="manageGitHubToken()" style="padding: 8px 16px; background: #666; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">
-          🔑 Gestionează Token
-        </button>
       </div>
     </div>`;
   
