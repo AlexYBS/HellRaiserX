@@ -1,11 +1,11 @@
 {
-  "lastUpdate": "2025-10-22T18:47:13.115Z",
+  "lastUpdate": "2025-10-22T18:49:40.233Z",
   "groups": {
     "A": {
       "groupAteam1": {
-        "points": "13",
-        "wins": "0",
-        "kills": "8"
+        "points": "22",
+        "wins": "1",
+        "kills": "2"
       },
       "groupAteam2": {
         "points": "0",
