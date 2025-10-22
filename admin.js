@@ -2,9 +2,7 @@
 // PANOU DE CONTROL ADMIN - HELLRAISER CUP
 // ========================================
 
-// Date pentru ec        <button onclick="manageToken()" style="padding: 8px 16px; background: #4CAF50; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">
-          🔑 Gestionează Token
-        </button> din fiecare grupă
+// Date pentru echipele din fiecare grupă
 const groupTeams = {
   A: [
     { name: "Survivors", id: "groupAteam1", logo: "logos/Survivors.webp" },
