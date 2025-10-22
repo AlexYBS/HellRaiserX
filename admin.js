@@ -581,10 +581,13 @@ function updateTeamDisplay(group, teamId, teamData) {
 
 // Încearcă să facă commit automat prin GitHub API
 async function autoCommitToGitHub() {
+  console.log('🚀 Încep procesul de commit automat...');
+  
   // Încearcă să încărce token-ul salvat
   let githubToken = localStorage.getItem('hellraiser_github_token');
   
   if (!githubToken) {
+    console.log('⚠️ Nu am găsit token salvat, cer utilizatorului...');
     githubToken = prompt(`🔑 Pentru commit automat, introdu GitHub Personal Access Token:
 
 📋 Cum să obții token-ul:
@@ -597,6 +600,7 @@ async function autoCommitToGitHub() {
 ❌ Nu vrem să îl salvezi? Apasă Cancel`);
     
     if (!githubToken) {
+      console.log('❌ Utilizatorul a anulat introducerea token-ului');
       showJSONInstructions();
       return;
     }
@@ -605,23 +609,29 @@ async function autoCommitToGitHub() {
     localStorage.setItem('hellraiser_github_token', githubToken);
     console.log('✅ Token salvat în browser pentru sesiunile viitoare!');
   } else {
-    console.log('🔑 Folosesc token-ul salvat...');
+    console.log('🔑 Folosesc token-ul salvat din localStorage...');
   }
   
   try {
+    console.log('📊 Colectez datele pentru upload...');
     const leaderboardData = getCurrentLeaderboardData();
+    console.log('📋 Date colectate:', leaderboardData);
     
     // Încearcă să facă commit prin GitHub API
+    console.log('⬆️ Încep upload-ul pe GitHub...');
     const success = await commitToGitHub(leaderboardData, githubToken);
+    console.log('📤 Rezultat commit:', success ? 'SUCCESS' : 'FAILED');
     
     if (success) {
+      console.log('🎉 COMMIT AUTOMAT REUȘIT!');
       alert('🎉 SUCCES! Rezultatele au fost actualizate automat pe GitHub!\n\n✅ Toți vizitatorii vor vedea noile rezultate!');
     } else {
+      console.log('❌ COMMIT AUTOMAT EȘUAT - cad pe metoda manuală');
       alert('❌ Nu s-a putut face commit automat.\n\nVa trebui să faci manual - vezi consola pentru JSON.');
       showJSONInstructions();
     }
   } catch (error) {
-    console.error('Eroare commit automat:', error);
+    console.error('💥 EROARE în autoCommitToGitHub:', error);
     alert('❌ Eroare la commit automat. Folosește metoda manuală.');
     showJSONInstructions();
   }
