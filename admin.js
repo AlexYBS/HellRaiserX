@@ -236,7 +236,10 @@ function updateLeaderboard(group) {
   });
   
   // Actualizează clasamentul în HTML
+  console.log(`🔍 Caut tabelul pentru grupa ${group} cu selectorul: .group-table-${group}`);
   const groupTable = document.querySelector(`.group-table-${group}`);
+  console.log('🎯 Tabel găsit:', groupTable);
+  
   if (groupTable) {
     teams.forEach(team => {
       const stats = teamStats[team.name];
@@ -269,12 +272,15 @@ function updateLeaderboard(group) {
     });
     
     // Reordonează echipele în funcție de puncte
-    console.log('🔄 Sortez echipele după puncte...');
+    console.log(`🔄 Sortez echipele după puncte pentru grupa ${group}...`);
     const tbody = groupTable.querySelector('tbody');
     if (!tbody) {
       console.error('❌ Nu găsesc tbody pentru grupa', group);
       return;
     }
+    
+    console.log('🔍 Găsit tbody:', tbody);
+    console.log('🔍 Numărul de copii tbody:', tbody.children.length);
     
     const rows = Array.from(tbody.querySelectorAll('tr:not(.collapse)'));
     console.log(`📊 Găsite ${rows.length} echipe pentru sortare`);
@@ -364,18 +370,33 @@ function updateLeaderboard(group) {
     ));
     
     // Curăță tabelul și re-adaugă rândurile în ordinea corectă
+    console.log('🗑️ Curăț tabelul...');
     const allRows = Array.from(tbody.children);
-    allRows.forEach(row => tbody.removeChild(row));
+    console.log(`📋 Toate rândurile înainte: ${allRows.length}`);
+    
+    // Elimină toate rândurile
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+    console.log('✅ Tabel golit');
     
     // Reface ordinea în tabel și actualizează pozițiile
+    console.log(`📊 Adaug ${sortedRows.length} rânduri în ordinea sortată...`);
     sortedRows.forEach((row, index) => {
       const positionCell = row.querySelector('th');
+      const nameCell = row.querySelector('td:nth-child(2)');
+      const teamName = nameCell ? nameCell.textContent.trim() : 'Unknown';
+      
+      console.log(`${index + 1}. Adaug echipa: ${teamName}`);
+      
       if (positionCell) {
         positionCell.textContent = index + 1;
+        console.log(`   Actualizez poziția la: ${index + 1}`);
       }
       
       // Adaugă rândul principal
       tbody.appendChild(row);
+      console.log(`   ✅ Rând principal adăugat`);
       
       // Găsește și adaugă rândul collapse asociat
       const targetId = row.getAttribute('data-bs-target');
@@ -384,9 +405,14 @@ function updateLeaderboard(group) {
         const collapseRow = allRows.find(r => r.id === collapseId);
         if (collapseRow) {
           tbody.appendChild(collapseRow);
+          console.log(`   ✅ Rând collapse adăugat pentru ${teamName}`);
+        } else {
+          console.log(`   ⚠️ Nu găsesc rândul collapse pentru ${teamName} (${collapseId})`);
         }
       }
     });
+    
+    console.log(`🎯 Finalizat! Tabelul are acum ${tbody.children.length} rânduri`);
     
     console.log('✅ Sortarea completă pentru grupa', group);
   }
