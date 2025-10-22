@@ -1,21 +1,21 @@
 {
-  "lastUpdate": "2025-10-22T18:28:30.218Z",
+  "lastUpdate": "2025-10-22T18:36:59.331Z",
   "groups": {
     "A": {
       "groupAteam1": {
-        "points": "17",
+        "points": "13",
         "wins": "0",
-        "kills": "5"
+        "kills": "8"
       },
       "groupAteam2": {
-        "points": "5",
+        "points": "0",
         "wins": "0",
         "kills": "0"
       },
       "groupAteam3": {
-        "points": "0",
+        "points": "9",
         "wins": "0",
-        "kills": "0"
+        "kills": "4"
       },
       "groupAteam4": {
         "points": "6",
@@ -23,34 +23,34 @@
         "kills": "1"
       },
       "groupAteam5": {
-        "points": "42",
+        "points": "47",
         "wins": "1",
-        "kills": "22"
+        "kills": "27"
       },
       "groupAteam6": {
-        "points": "12",
+        "points": "15",
         "wins": "0",
-        "kills": "4"
+        "kills": "0"
       },
       "groupAteam7": {
+        "points": "17",
+        "wins": "0",
+        "kills": "2"
+      },
+      "groupAteam8": {
         "points": "5",
         "wins": "0",
         "kills": "0"
       },
-      "groupAteam8": {
-        "points": "8",
-        "wins": "0",
-        "kills": "3"
-      },
       "groupAteam9": {
-        "points": "0",
+        "points": "5",
         "wins": "0",
         "kills": "0"
       },
       "groupAteam10": {
-        "points": "17",
+        "points": "0",
         "wins": "0",
-        "kills": "7"
+        "kills": "0"
       },
       "groupAteam11": {
         "points": "0",
@@ -58,9 +58,9 @@
         "kills": "0"
       },
       "groupAteam12": {
-        "points": "21",
+        "points": "8",
         "wins": "0",
-        "kills": "6"
+        "kills": "0"
       }
     },
     "B": {
