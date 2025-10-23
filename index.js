@@ -202,4 +202,67 @@ function updateCountdown() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", updateCountdown);
+// Sortează automat tabelele de grupe (A-F) descrescător după PTS
+function sortTablesByPoints() {
+  const groupIds = ['A','B','C','D','E','F'];
+  
+  groupIds.forEach(grupa => {
+    const table = document.querySelector(`.group-table-${grupa}`);
+    if (!table) return;
+    
+    const tbody = table.querySelector('tbody');
+    if (!tbody) return;
+    
+    // Ia toate rândurile echipelor (exclude rândurile collapse)
+    const rows = Array.from(tbody.querySelectorAll('tr')).filter(tr => !tr.classList.contains('collapse'));
+    
+    // Sortează după PTS (coloana 4, index 3)
+    rows.sort((a, b) => {
+      const ptsA = parseInt(a.children[3].textContent, 10) || 0;
+      const ptsB = parseInt(b.children[3].textContent, 10) || 0;
+      return ptsB - ptsA; // Descrescător
+    });
+    
+    // Actualizează pozițiile în DOM
+    rows.forEach((tr, index) => {
+      const positionCell = tr.children[0];
+      if (positionCell) {
+        positionCell.innerHTML = index + 1; // actualizează poziția
+      }
+    });
+    
+    // Reafișează rândurile în ordinea sortată, cu collapse-ul imediat după fiecare echipă
+    rows.forEach(tr => {
+      tbody.appendChild(tr);
+      // Găsește collapse-ul asociat (data-bs-target sau id)
+      const collapseId = tr.getAttribute('data-bs-target');
+      if (collapseId) {
+        const collapseRow = tbody.querySelector(collapseId);
+        if (collapseRow) tbody.appendChild(collapseRow);
+      }
+    });
+  });
+  
+  console.log('📊 Clasamente actualizate și sortate după puncte!');
+}
+
+// Funcție pentru actualizare manuală
+function refreshRankings() {
+  sortTablesByPoints();
+}
+
+// Expune funcția în window pentru debugging
+window.refreshRankings = refreshRankings;
+window.sortTablesByPoints = sortTablesByPoints;
+
+document.addEventListener("DOMContentLoaded", function() {
+  updateCountdown();
+  
+  // Sortează tabelele după încărcare
+  setTimeout(() => {
+    sortTablesByPoints();
+  }, 500);
+  
+  // Adaugă buton de refresh în consolă pentru debugging
+  console.log('🎮 Pentru a actualiza clasamentele manual, rulează: refreshRankings()');
+});
