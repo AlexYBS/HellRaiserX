@@ -136,6 +136,24 @@ main, nav, header, section, .container, .special-guest-section {
 .card-body {
   padding-bottom: 0 !important;
 }
+/* Stiluri pentru logo-urile clickable */
+.team-logo-clickable {
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+}
+
+.team-logo-clickable:hover {
+  transform: scale(1.1) !important;
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7) !important;
+}
+
+.team-logo-clickable:active {
+  transform: scale(1.05) !important;
+}
+
 .group-table-A, .group-table-B, .group-table-C, .group-table-D, .group-table-E, .group-table-F {
   margin-bottom: 0 !important;
 }
@@ -190,6 +208,116 @@ main, nav, header, section, .container, .special-guest-section {
 .card .table .collapse .row .col-12:last-child .mb-2 {
   margin-bottom: 0 !important;
 }
+
+/* Optimizări pentru mobil */
+@media (max-width: 768px) {
+  /* Pe mobil, afișează grupele pe o singură coloană */
+  .col-md-6.col-lg-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Fă tabelele scrollabile pe orizontală pe mobil */
+  .card-body {
+    overflow-x: auto !important;
+  }
+  
+  .table {
+    min-width: 500px !important;
+  }
+  
+  /* Reduce dimensiunea logo-urilor pe mobil */
+  .group-table-A img, .group-table-B img, .group-table-C img, 
+  .group-table-D img, .group-table-E img, .group-table-F img {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  
+  /* Ajustează dimensiunea fontului în tabel pentru mobil */
+  .table th, .table td {
+    font-size: 0.875rem !important;
+    padding: 0.5rem 0.25rem !important;
+  }
+  
+  /* Reduce spațierea între grupe pe mobil */
+  .row.g-4 {
+    gap: 1rem !important;
+  }
+  
+  /* Optimizează titlurile pe mobil */
+  .card-header {
+    font-size: 1rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  /* Ajustează spațierea în collapse-uri pe mobil */
+  .collapse .col-12.col-md-6.col-lg-4 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+  
+  .collapse .p-2 {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Optimizează secțiunea cu statistici pe mobil */
+  .row.g-3 .col-4 .p-3 {
+    padding: 0.75rem 0.5rem !important;
+  }
+  
+  .row.g-3 .col-4 .h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .row.g-3 .col-4 .small {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Optimizări pentru ecrane foarte mici (sub 576px) */
+@media (max-width: 576px) {
+  /* Reduce și mai mult logo-urile */
+  .group-table-A img, .group-table-B img, .group-table-C img, 
+  .group-table-D img, .group-table-E img, .group-table-F img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  /* Font și padding mai mici */
+  .table th, .table td {
+    font-size: 0.75rem !important;
+    padding: 0.375rem 0.125rem !important;
+  }
+  
+  /* Collapse-urile pe o singură coloană pe telefoane mici */
+  .collapse .col-12.col-md-6.col-lg-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ajustează titlul principal */
+  h2.fw-black {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Reduce spațierea containerului */
+  .container {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  
+  /* Optimizează navbar-ul pe mobil */
+  .navbar-brand img {
+    height: 45px !important;
+  }
+  
+  /* Optimizează secțiunea hero pe mobil */
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
     </style>
 </head>
 
@@ -208,7 +336,7 @@ main, nav, header, section, .container, .special-guest-section {
 
         <!-- Buton mobil -->
         <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+             aria-controls="offcanvasNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -225,6 +353,13 @@ main, nav, header, section, .container, .special-guest-section {
                     <li class="nav-item"><a class="nav-link" href="#tournaments">Tournaments</a></li>
                     <li class="nav-item"><a class="nav-link" href="#rankings">Rankings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#hof">Hall of Fame</a></li>
+                    <li class="nav-item">
+                        <button id="showAdminBtn" class="btn btn-outline-warning btn-sm d-flex align-items-center gap-1" 
+                                style="border-color: #ffd700; color: #ffd700; font-weight: 500;">
+                            ⚙️
+                            <span class="d-none d-md-inline">Admin</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -454,7 +589,7 @@ main, nav, header, section, .container, .special-guest-section {
     <h2 class="fw-black mb-4 text-gold">Group Stage Rankings</h2>
     <div class="row g-4">
       <!-- Group A -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group A</div>
           <div class="card-body p-0">
@@ -473,9 +608,9 @@ main, nav, header, section, .container, .special-guest-section {
                 <!-- 12 echipe Group A -->
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
-                  <td><img src="logos/Survivors.webp" alt="Team A1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Survivors.webp" alt="Team A1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Survivors</td>
                   <td>0</td>
                   <td>0</td>
@@ -554,9 +689,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/DANGER_TEAM.jpg" alt="Team A2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/DANGER_TEAM.jpg" alt="Team A2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Danger Team</td>
                   <td>0</td>
                   <td>0</td>
@@ -629,7 +764,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </div>
                 </td>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
                   <td><img src="logos/BABY_GANG.jpg" alt="Team A3 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>Baby Gang</td>
@@ -715,7 +850,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
                   <td><img src="logos/OLTEAN_CLAN.jpg" alt="Team A4 Logo" class="rounded" style="width:64px;height: 64px;"></td>
                   <td>Oltean Clan</td>
@@ -796,9 +931,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/ALPHA_ESPORTS_AF.webp" alt="Team A5 Logo" class="rounded" style="width:64px;height:64px;"></td>
+                  <td><img src="logos/Alpha_Esports.png" alt="Team A5 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>Alpha Esports</td>
                   <td>0</td>
                   <td>0</td>
@@ -891,9 +1026,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/ABSOLUTE_KO.jpg" alt="Team A6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/ABSOLUTE_KO.jpg" alt="Team A6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Absolute KO</td>
                   <td>0</td>
                   <td>0</td>
@@ -962,9 +1097,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/RRSH_BLOODY.png" alt="Team A7 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/RRSH_BLOODY.png" alt="Team A7 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>RRSH Bloody</td>
                   <td>0</td>
                   <td>0</td>
@@ -1031,9 +1166,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/RG_GAMING_007.png" alt="Team A8 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/RG_GAMING_007.png" alt="Team A8 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>RG Gaming 007</td>
                   <td>0</td>
                   <td>0</td>
@@ -1112,9 +1247,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/NXT_ESPORTS.jpg" alt="Team A9 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/NXT_ESPORTS.jpg" alt="Team A9 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>NXT ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -1193,9 +1328,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>-->
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/A7_GHOSTS.jpg" alt="Team A10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/A7_GHOSTS.jpg" alt="Team A10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>A7 Ghosts</td>
                   <td>0</td>
                   <td>0</td>
@@ -1274,7 +1409,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
                   <td><img src="logos/MERT_TEAM.jpg" alt="Team A11 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>MERT Team</td>
@@ -1355,7 +1490,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupAteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
                   <td><img src="logos/13_zona.jpg" alt="Team A12 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>13 Zona</td>
@@ -1441,7 +1576,7 @@ main, nav, header, section, .container, .special-guest-section {
         </div>
       </div>
       <!-- Group B -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group B</div>
           <div class="card-body p-0">
@@ -1460,9 +1595,9 @@ main, nav, header, section, .container, .special-guest-section {
                 <!-- 12 echipe Group B -->
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/Zeroo_Squad.webp" alt="Team B1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Zeroo_Squad.webp" alt="Team B1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Zeroo Squad</td>
                   <td>0</td>
                   <td>0</td>
@@ -1541,9 +1676,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/4K_esports.webp" alt="Team B2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/4K_esports.webp" alt="Team B2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>4K Esports</td>
                   <td>0</td>
                   <td>0</td>
@@ -1610,9 +1745,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/LINE_07.jpg" alt="Team B3 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/LINE_07.jpg" alt="Team B3 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Line 07</td>
                   <td>0</td>
                   <td>0</td>
@@ -1679,9 +1814,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
-                  <td><img src="logos/RUN_AWAY.png" alt="Team B4 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/RUN_AWAY.png" alt="Team B4 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Run Away</td>
                   <td>0</td>
                   <td>0</td>
@@ -1749,9 +1884,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
-                  <td><img src="logos/7H_ROMANIA.png" alt="Team B5 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/7H_ROMANIA.png" alt="Team B5 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>7H Romania</td>
                   <td>0</td>
                   <td>0</td>
@@ -1830,9 +1965,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/ITALY_ESPORTS.jpg" alt="Team B6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/ITALY_ESPORTS.jpg" alt="Team B6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Italy Esports</td>
                   <td>0</td>
                   <td>0</td>
@@ -1911,7 +2046,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
                   <td><img src="logos/TEAM_SEXO_DURO.jpg" alt="Team B7 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>Team Sexo Duro</td>
@@ -1992,7 +2127,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
                   <td><img src="logos/45_DARK.webp" alt="Team B8 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>45 Dark</td>
@@ -2073,7 +2208,7 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
                   <td><img src="logos/line ST.webp" alt="Team B9 Logo" class="rounded" style="width:64px;height:64px;"></td>
                   <td>Line ST</td>
@@ -2154,9 +2289,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/EAGLE_FANG.jpg" alt="Team B10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/EAGLE_FANG.jpg" alt="Team B10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Eagle Fang</td>
                   <td>0</td>
                   <td>0</td>
@@ -2235,9 +2370,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/Bossiiiii.png" alt="Team B11 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Bossiiiii.png" alt="Team B11 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Bossiiiii</td>
                   <td>0</td>
                   <td>0</td>
@@ -2304,9 +2439,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupBteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/VENCROSS.jpg" alt="Team B12 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/VENCROSS.jpg" alt="Team B12 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Vencross</td>
                   <td>0</td>
                   <td>0</td>
@@ -2394,7 +2529,7 @@ main, nav, header, section, .container, .special-guest-section {
         </div>
       </div>
       <!-- Group C -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group C</div>
           <div class="card-body p-0">
@@ -2413,9 +2548,9 @@ main, nav, header, section, .container, .special-guest-section {
                 <!-- 12 echipe Group C -->
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/EVO_LINE.jpg" alt="Team C1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/EVO_LINE.jpg" alt="Team C1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>EVO Line</td>
                   <td>0</td>
                   <td>0</td>
@@ -2494,9 +2629,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/MVP_GAMING.jpg" alt="Team C2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/MVP_GAMING.jpg" alt="Team C2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>MVP Gaming</td>
                   <td>0</td>
                   <td>0</td>
@@ -2575,9 +2710,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
-                  <td><img src="logos/RED7BLACK.jpg" alt="Team C3 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/RED7BLACK.jpg" alt="Team C3 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Red7Black</td>
                   <td>0</td>
                   <td>0</td>
@@ -2656,9 +2791,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/SPAIN_MASTER.jpg" alt="Team C4 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/SPAIN_MASTER.jpg" alt="Team C4 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Spainmaster</td>
                   <td>0</td>
                   <td>0</td>
@@ -2737,9 +2872,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
-                  <td><img src="logos/UNSTOPPABLE.jpg" alt="Team C5 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/UNSTOPPABLE.jpg" alt="Team C5 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Unstoppable</td>
                   <td>0</td>
                   <td>0</td>
@@ -2818,9 +2953,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/Hooligans_E-SPORTS.jpeg" alt="Team C6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Hooligans_E-SPORTS.jpeg" alt="Team C6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Hooligans ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -2899,9 +3034,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
-                  <td><img src="logos/KARMA.jpg" alt="Team C7 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/KARMA.jpg" alt="Team C7 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Karma</td>
                   <td>0</td>
                   <td>0</td>
@@ -2980,9 +3115,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/Z'S_Freestyle.jpg" alt="Team C8 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Z'S_Freestyle.jpg" alt="Team C8 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Z'S Frestyle</td>
                   <td>0</td>
                   <td>0</td>
@@ -3061,9 +3196,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
-                  <td><img src="logos/TM_DEATH.jpg" alt="Team C9 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/TM_DEATH.jpg" alt="Team C9 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>TM Death</td>
                   <td>0</td>
                   <td>0</td>
@@ -3142,9 +3277,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/VENCEDEROS.jpg" alt="Team C10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/VENCEDEROS.jpg" alt="Team C10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Vencederos</td>
                   <td>0</td>
                   <td>0</td>
@@ -3223,9 +3358,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/FIRE_GUARDS.jpg" alt="Team C11 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/FIRE_GUARDS.jpg" alt="Team C11 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Fire Guards</td>
                   <td>0</td>
                   <td>0</td>
@@ -3304,9 +3439,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupCteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
-                  <td><img src="logos/Tokyo_Revengers.jpg" alt="Team C12 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Tokyo_Revengers.jpg" alt="Team C12 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Tokyo Revengers</td>
                   <td>0</td>
                   <td>0</td>
@@ -3390,7 +3525,7 @@ main, nav, header, section, .container, .special-guest-section {
         </div>
       </div>
       <!-- Group D -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group D</div>
           <div class="card-body p-0">
@@ -3409,9 +3544,9 @@ main, nav, header, section, .container, .special-guest-section {
                 <!-- 12 echipe Group D -->
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/TROPA_DO_BIGODES.jpg" alt="Team D1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/TROPA_DO_BIGODES.jpg" alt="Team D1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Tropa Do Bigodes</td>
                   <td>0</td>
                   <td>0</td>
@@ -3490,9 +3625,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/SE7EN.jpg" alt="Team D2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/SE7EN.jpg" alt="Team D2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Se7en</td>
                   <td>0</td>
                   <td>0</td>
@@ -3571,9 +3706,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
-                  <td><img src="logos/VZ_ESPORTS.jpg" alt="Team D3 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/VZ_ESPORTS.jpg" alt="Team D3 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>VZ ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -3652,9 +3787,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/KINGDOM.jpg" alt="Team D4 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/KINGDOM.jpg" alt="Team D4 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Kingdom</td>
                   <td>0</td>
                   <td>0</td>
@@ -3733,9 +3868,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
-                  <td><img src="logos/FIVE_G.jpg" alt="Team D5 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/FIVE_G.jpg" alt="Team D5 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Five G</td>
                   <td>0</td>
                   <td>0</td>
@@ -3814,9 +3949,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/EXPANDX.jpg" alt="Team D6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/EXPANDX.jpg" alt="Team D6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>ExpandX</td>
                   <td>0</td>
                   <td>0</td>
@@ -3895,9 +4030,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
-                  <td><img src="logos/Banda313.png" alt="Team D7 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Banda313.png" alt="Team D7 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Banda 313</td>
                   <td>0</td>
                   <td>0</td>
@@ -3976,9 +4111,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/MAFIA.jpg" alt="Team D8 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/MAFIA.jpg" alt="Team D8 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Mafia</td>
                   <td>0</td>
                   <td>0</td>
@@ -4057,9 +4192,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
-                  <td><img src="logos/H7_KARDERRAT.jpg" alt="Team D9 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/H7_KARDERRAT.jpg" alt="Team D9 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>H7 Karderrat</td>
                   <td>0</td>
                   <td>0</td>
@@ -4138,9 +4273,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/8M_GS.png" alt="Team D10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/8M_GS.png" alt="Team D10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>8M GS</td>
                   <td>0</td>
                   <td>0</td>
@@ -4219,9 +4354,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/Line_21.png" alt="Team D11 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Line_21.png" alt="Team D11 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Line 21</td>
                   <td>0</td>
                   <td>0</td>
@@ -4300,9 +4435,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupDteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
-                  <td><img src="logos/BGD_E-SPORTS.png" alt="Team D12 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/BGD_E-SPORTS.png" alt="Team D12 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Green Pixel</td>
                   <td>0</td>
                   <td>0</td>
@@ -4386,7 +4521,7 @@ main, nav, header, section, .container, .special-guest-section {
         </div>
       </div>
       <!-- Group E -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group E</div>
           <div class="card-body p-0">
@@ -4405,9 +4540,9 @@ main, nav, header, section, .container, .special-guest-section {
                 <!-- 12 echipe Group E -->
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/FAVELA_ESPORTS.jpg" alt="Team E1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/FAVELA_ESPORTS.jpg" alt="Team E1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Favela ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -4486,9 +4621,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/WILDER_LOWE.jpg" alt="Team E2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/WILDER_LOWE.jpg" alt="Team E2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Wilder Löwe</td>
                   <td>0</td>
                   <td>0</td>
@@ -4567,9 +4702,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
-                  <td><img src="logos/FORCE_EU.jpg" alt="Team E3 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/FORCE_EU.jpg" alt="Team E3 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Force EU</td>
                   <td>0</td>
                   <td>0</td>
@@ -4648,9 +4783,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/WIN4EVER.jpeg" alt="Team E4 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/WIN4EVER.jpeg" alt="Team E4 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>win4Ever</td>
                   <td>0</td>
                   <td>0</td>
@@ -4729,9 +4864,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
-                  <td><img src="logos/Alpha_Esports.png" alt="Team E5 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/ALPHA_ESPORTS_AF.webp" alt="Team E5 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Alpha ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -4810,9 +4945,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/Detroit.jpeg" alt="Team E6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Detroit.jpeg" alt="Team E6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Detroit</td>
                   <td>0</td>
                   <td>0</td>
@@ -4891,9 +5026,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
-                  <td><img src="logos/NO_DAYS_OFF.jpg" alt="Team E7 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/NO_DAYS_OFF.jpg" alt="Team E7 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>No Days Off</td>
                   <td>0</td>
                   <td>0</td>
@@ -4972,9 +5107,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/UNKNOWS_063.jpg" alt="Team E8 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/UNKNOWS_063.jpg" alt="Team E8 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Unknows 063</td>
                   <td>0</td>
                   <td>0</td>
@@ -5053,9 +5188,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
-                  <td><img src="logos/ENEM!ES 99.png" alt="Team E9 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/ENEM!ES 99.png" alt="Team E9 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Enem!es 99</td>
                   <td>0</td>
                   <td>0</td>
@@ -5134,9 +5269,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/VAMOS.PNG" alt="Team E10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/VAMOS.PNG" alt="Team E10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Vamos</td>
                   <td>0</td>
                   <td>0</td>
@@ -5215,9 +5350,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/INVERSIDIUS.jpg" alt="Team E11 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/INVERSIDIUS.jpg" alt="Team E11 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Inversidius</td>
                   <td>0</td>
                   <td>0</td>
@@ -5296,9 +5431,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupEteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
-                  <td><img src="logos/Overkill_Esports.png" alt="Team E12 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Overkill_Esports.png" alt="Team E12 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Overkill ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -5382,7 +5517,7 @@ main, nav, header, section, .container, .special-guest-section {
         </div>
       </div>
       <!-- Group F -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <div class="card border-gold-subtle shadow h-100">
           <div class="card-header bg-gold text-dark fw-bold text-center">Group F</div>
           <div class="card-body p-0">
@@ -5400,9 +5535,9 @@ main, nav, header, section, .container, .special-guest-section {
               <tbody>
                 <!-- Exemplu: schimbi doar logo si puncte -->
                 <!-- Echipa 1 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam1" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>1</th>
-                  <td><img src="logos/WHITE_LION.jpg" alt="Team F1 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/WHITE_LION.jpg" alt="Team F1 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>White Lions</td>
                   <td>0</td>
                   <td>0</td>
@@ -5481,9 +5616,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 2 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam2" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>2</th>
-                  <td><img src="logos/UNDERFIRE.jpg" alt="Team F2 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/UNDERFIRE.jpg" alt="Team F2 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Underfire</td>
                   <td>0</td>
                   <td>0</td>
@@ -5562,9 +5697,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 3 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam3" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>3</th>
-                  <td><img src="logos/LAST_LEGENDS.jpg" alt="Team F3 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/LAST_LEGENDS.jpg" alt="Team F3 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Last Legends</td>
                   <td>0</td>
                   <td>0</td>
@@ -5643,9 +5778,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 4 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam4" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>4</th>
-                  <td><img src="logos/BALTICA_TEAM.jpg" alt="Team F4 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/BALTICA_TEAM.jpg" alt="Team F4 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Baltica Team</td>
                   <td>0</td>
                   <td>0</td>
@@ -5724,9 +5859,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa  5 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam5" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>5</th>
-                  <td><img src="logos/D3STROY3RS.jpg" alt="Team F5 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/D3STROY3RS.jpg" alt="Team F5 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>D3stroy3rs</td>
                   <td>0</td>
                   <td>0</td>
@@ -5805,9 +5940,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 6 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam6" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>6</th>
-                  <td><img src="logos/UNKNOWN.png" alt="Team F6 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/UNKNOWN.png" alt="Team F6 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Unknown</td>
                   <td>0</td>
                   <td>0</td>
@@ -5886,9 +6021,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 7 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam7" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>7</th>
-                  <td><img src="logos/08_ELITE.jpg" alt="Team F7 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/08_ELITE.jpg" alt="Team F7 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>08 Elite</td>
                   <td>0</td>
                   <td>0</td>
@@ -5967,9 +6102,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 8 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam8" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>8</th>
-                  <td><img src="logos/Arushat.jpeg" alt="Team F8 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/Arushat.jpeg" alt="Team F8 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Arushat</td>
                   <td>0</td>
                   <td>0</td>
@@ -6048,9 +6183,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 9 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam9" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>9</th>
-                  <td><img src="logos/BF_Esports.jpg" alt="Team F9 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/BF_Esports.jpg" alt="Team F9 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>BF ESPORTS</td>
                   <td>0</td>
                   <td>0</td>
@@ -6129,9 +6264,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 10 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam10" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>10</th>
-                  <td><img src="logos/PAIXA_PRETA.jpg" alt="Team F10 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/PAIXA_PRETA.jpg" alt="Team F10 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Paixa Preta</td>
                   <td>0</td>
                   <td>0</td>
@@ -6210,9 +6345,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 11 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam11" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>11</th>
-                  <td><img src="logos/BLACK_TEAM.jpg" alt="Team F11 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/BLACK_TEAM.jpg" alt="Team F11 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Black Team</td>
                   <td>0</td>
                   <td>0</td>
@@ -6291,9 +6426,9 @@ main, nav, header, section, .container, .special-guest-section {
                   </td>
                 </tr>
                 <!-- Echipa 12 -->
-                <tr data-bs-toggle="collapse" data-bs-target="#groupFteam12" aria-expanded="false" style="cursor:pointer;">
+                <tr>
                   <th>12</th>
-                  <td><img src="logos/UNKNOWN_1.png" alt="Team F12 Logo" class="rounded" style="width:65px;height:65px;"></td>
+                  <td><img src="logos/UNKNOWN_1.png" alt="Team F12 Logo" class="rounded" style="width:65px;height:65px;"   ></td>
                   <td>Unknown</td>
                   <td>0</td>
                   <td>0</td>
@@ -6486,51 +6621,67 @@ function styleKDFields() {
         }
     });
 }
+</script>
 
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-// Inițializează funcționalitatea când pagina se încarcă
+<!-- Script pentru collapse prin logo-uri -->
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    calculateKD();
-    styleKDFields();
+    console.log('🎮 Inițializez collapse pentru logo-uri...');
+    
+    // Găsește toate logo-urile de echipe
+    const teamLogos = document.querySelectorAll('img[alt*="Team"][alt*="Logo"]');
+    console.log('Found', teamLogos.length, 'team logos');
+    
+    teamLogos.forEach((logo, index) => {
+        // Adaugă clasa pentru styling
+        logo.classList.add('team-logo-clickable');
+        
+        // Extrage ID-ul echipei din alt text
+        const altText = logo.getAttribute('alt');
+        const match = altText.match(/Team ([A-F])(\d+) Logo/);
+        
+        if (match) {
+            const group = match[1]; // "A", "B", etc.
+            const teamNumber = match[2]; // "1", "2", etc.
+            const targetId = `group${group}team${teamNumber}`;
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                console.log(`✅ Logo ${group}${teamNumber} linked to #${targetId}`);
+                
+                // Adaugă tooltip pentru a indica că este clickable
+                logo.title = `Click pentru a vedea jucătorii echipei`;
+                
+                // Adaugă event listener pentru click
+                logo.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log(`🖱️ Click pe echipa ${group}${teamNumber}`);
+                    
+                    // Toggle collapse cu Bootstrap
+                    const bsCollapse = new bootstrap.Collapse(targetElement, {
+                        toggle: true
+                    });
+                });
+                
+            } else {
+                console.warn(`❌ Target #${targetId} not found for team ${group}${teamNumber}`);
+            }
+        } else {
+            console.warn('❌ Could not parse team info from:', altText);
+        }
+    });
+    
+    console.log('🎮 Collapse setup completed!');
 });
 </script>
 
-<!-- Panou de control pentru actualizarea rezultatelor (ASCUNS) -->
-<div id="adminPanel" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #1a1a1a; border: none; padding: 20px; z-index: 9999; overflow-y: auto;">
-  <h4 style="color: #ffd700; margin-bottom: 20px;">🎮 Panou Control Rezultate 🔒</h4>
-  
-  <!-- Toggle pentru afișarea panoului -->
-  <div style="margin-bottom: 15px;">
-    <label style="color: #fff;">Selectează Grupa:</label>
-    <select id="groupSelector" style="width: 100%; padding: 5px; margin-top: 5px; background: #333; color: #fff; border: 1px solid #555;">
-      <option value="A">Grupa A</option>
-      <option value="B">Grupa B</option>
-      <option value="C">Grupa C</option>
-      <option value="D">Grupa D</option>
-      <option value="E">Grupa E</option>
-      <option value="F">Grupa F</option>
-    </select>
-  </div>
+<!-- Admin Panel Script -->
+<script src="admin.js"></script>
 
-  <div id="matchResults">
-    <!-- Conținutul se va genera dinamic -->
-  </div>
-
-  <div style="margin-top: 20px; text-align: center;">
-    <button id="saveResults" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">💾 Salvează Rezultate</button>
-    <button id="hidePanel" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">❌ Ascunde Panoul</button>
-  </div>
-</div>
-
-<!-- Buton pentru afișarea panoului (vizibil în josul paginii) -->
-<div id="showPanelBtn" style="position: fixed; bottom: 20px; right: 20px; z-index: 9998;">
-  <button style="background: #ffd700; color: #000; border: none; padding: 15px; border-radius: 50%; cursor: pointer; font-size: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); position: relative;" title="Deschide Panou Control (Protejat cu parolă)">
-    ⚙️
-    <span style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 12px; display: flex; align-items: center; justify-content: center;">🔒</span>
-  </button>
-</div>
-
-
-
+</body>
 </html>
