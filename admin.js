@@ -1,5 +1,78 @@
 // ========================================
 // PANOU DE CONTROL ADMIN - HELLRAISER CUP
+// RAPID EXPORT - LIVE UPDATE
+// ========================================
+
+// QUICK EXPORT - Adaugă buton de export rapid
+function addQuickExportButton() {
+  const adminPanel = document.querySelector('.admin-panel') || document.body;
+  
+  const exportBtn = document.createElement('button');
+  exportBtn.innerHTML = '⚡ EXPORT RAPID PENTRU GITHUB ⚡';
+  exportBtn.className = 'btn btn-warning btn-lg mb-3';
+  exportBtn.style.cssText = 'width: 100%; font-weight: bold; font-size: 1.2rem; background: linear-gradient(45deg, #ff6b35, #f7931e); border: none; box-shadow: 0 4px 15px rgba(255,107,53,0.4);';
+  
+  exportBtn.onclick = function() {
+    generateQuickExport();
+  };
+  
+  adminPanel.insertBefore(exportBtn, adminPanel.firstChild);
+}
+
+function generateQuickExport() {
+  const allData = localStorage.getItem('tournament_data_hellraiser');
+  if (!allData) {
+    alert('Nu există date salvate! Salvează primul clasamentul.');
+    return;
+  }
+  
+  const data = JSON.parse(allData);
+  let exportText = `COPIE ACEST COD ȘI ÎNLOCUIEȘTE DATELE ÎN index.html PE GITHUB:\n\n`;
+  exportText += `=== REZULTATE ACTUALIZATE - ${new Date().toLocaleString()} ===\n\n`;
+  
+  // Generează codul pentru fiecare grupă
+  ['A','B','C','D','E','F'].forEach(group => {
+    if (data[group]) {
+      exportText += `GRUPA ${group}:\n`;
+      data[group].forEach((team, index) => {
+        exportText += `Poziția ${index + 1}: ${team.name} - ${team.totalPoints} PTS, ${team.wins} wins, ${team.totalKills} kills\n`;
+      });
+      exportText += '\n';
+    }
+  });
+  
+  // Creează o fereastră cu textul pentru copiere
+  const exportWindow = window.open('', '_blank', 'width=800,height=600');
+  exportWindow.document.write(`
+    <html>
+    <head><title>Export Rapid - Copie pentru GitHub</title></head>
+    <body style="font-family: monospace; background: #1a1a1a; color: #00ff00; padding: 20px;">
+      <h2 style="color: #ff6b35;">⚡ EXPORT RAPID PENTRU GITHUB ⚡</h2>
+      <button onclick="navigator.clipboard.writeText(document.getElementById('exportData').innerText).then(()=>alert('Copiat în clipboard!')); " 
+              style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; margin-bottom: 20px;">
+        📋 COPIE ÎN CLIPBOARD
+      </button>
+      <pre id="exportData" style="background: #000; padding: 15px; border: 1px solid #333; white-space: pre-wrap;">${exportText}</pre>
+      <h3 style="color: #ff6b35;">📋 INSTRUCȚIUNI RAPIDE:</h3>
+      <ol style="color: #ffffff;">
+        <li>Apasă butonul "COPIE ÎN CLIPBOARD"</li>
+        <li>Mergi pe <a href="https://github.com/AlexYBS/HellRaiserX" target="_blank" style="color: #00ff00;">GitHub Repository</a></li>
+        <li>Editează index.html direct pe GitHub</li>
+        <li>Caută secțiunile de echipe și actualizează cu datele de mai sus</li>
+        <li>Salvează - site-ul se actualizează automat!</li>
+      </ol>
+    </body>
+    </html>
+  `);
+}
+
+// Inițializează butonul când se încarcă pagina
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(addQuickExportButton, 500);
+});
+
+// ========================================
+// PANOU DE CONTROL ADMIN - HELLRAISER CUP
 // ========================================
 
 // Date pentru echipele din fiecare grupă
